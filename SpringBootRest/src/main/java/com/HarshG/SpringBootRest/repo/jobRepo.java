@@ -40,7 +40,16 @@ public class jobRepo {
     public List<JobPost> getAllJobs() {
         return jobs;
     }
-    public void addJobPost(JobPost job){
+    public JobPost addJobPost(JobPost job){
         jobs.add(job);
+        return job;
     }
+
+    public JobPost getPost(int postId) {
+        for(JobPost job : jobs){
+            if(job.getPostId()==postId)return job;
+        }
+        return null;
+    }
+
 }
