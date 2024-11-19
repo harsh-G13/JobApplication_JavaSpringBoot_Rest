@@ -18,12 +18,23 @@ public class jobRestController {
     public List<JobPost> getAllJobs(){
         return service.getAllJobs();
     }
-    @GetMapping("jobPost/{PostId}")
-    public JobPost getPost(@PathVariable("PostId") int PostId){
-        return service.getPost(PostId);
+    @GetMapping("jobPost/{postId}")
+    public JobPost getPost(@PathVariable("postId") int postId){
+        return service.getPost(postId);
     }
    @PostMapping("jobPost")
     public JobPost addJob(@RequestBody JobPost jobPost){
         return service.addJobPost(jobPost);
+    }
+    @PutMapping("jobPost/{postId}")
+    public JobPost editJob(@RequestBody JobPost jobPost){
+        service.editJob(jobPost);
+        return service.getPost(jobPost.getPostId());
+
+    }
+    @DeleteMapping("jobPost/{postId}")
+    public String deleteJob(@PathVariable int postId){
+        service.deleteJob(postId);
+        return "Delete Successful";
     }
 }
